@@ -55,9 +55,5 @@ test-ci: ## Run tests for ci
 # so any change is detected for the build rule
 $(patsubst cmd/%,$(GO_OUTPUT)/%,$(wildcard cmd/*)): $(shell find $(PROJECT_DIR)/cmd -type f -name '*.go') $(shell find $(PROJECT_DIR)/pkg -type f -name '*.go')
 
-# Regenerate code when message schema change
-$(shell find "$(EVENT_MESSAGE_DIR)" -type f -name '*.go'): $(SCHEMA_YAML_FILES)
-	$(MAKE) gen-event-messages
-
 $(GO_OUTPUT):
 	mkdir -p "$(GO_OUTPUT)"
